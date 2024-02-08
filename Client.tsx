@@ -9,6 +9,7 @@ export const uploadImage = async (imageUri: string) => {
   });
 
   try {
+
     const response = await fetch('https://api.imgur.com/3/image', {
       method: 'POST',
       headers: {
@@ -17,6 +18,7 @@ export const uploadImage = async (imageUri: string) => {
       },
       body: formData,
     });
+
     if (response.ok) {
       const result = await response.json();
       console.log('Image uploaded to Imgur: ', result.data.link);
@@ -24,6 +26,7 @@ export const uploadImage = async (imageUri: string) => {
     } else {
       console.log('Upload failed');
     }
+    
   } catch (error) {
     console.error('Upload failed: ', error);
   }

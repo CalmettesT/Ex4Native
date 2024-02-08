@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import { Button, View, Image, Text, Platform, PermissionsAndroid } from 'react-native';
-import { launchImageLibrary, Asset, ImagePickerResponse } from 'react-native-image-picker';
-import { request, PERMISSIONS } from 'react-native-permissions';
+import { Button, View } from 'react-native';
+import { launchImageLibrary } from 'react-native-image-picker';
 import { uploadImage } from './Client';
 
 
@@ -32,7 +31,7 @@ const App = () => {
           const uri = response.assets[0].uri;
           if (uri) { // S'assure que `uri` n'est pas `undefined`
             console.log('Image selected: ', uri);
-            setImageUri(uri); // `uri` est garanti d'être une string ici, jamais `undefined`
+            setImageUri(uri); // `uri` est garanti d'être une string ici
           } else {
             setImageUri(null); // Cas où `uri` est `undefined`
             console.log("Image non sélectionné");
@@ -52,7 +51,6 @@ const App = () => {
   return (
     <View>
       <Button title="Sélectionner une Image" onPress={requestGalleryPermission} />
-      {imageUri && <Image source={{ uri: imageUri }} />}
       <Button title="Envoyer sur Imgur" onPress={handleUploadImage} />
     </View>
   );
